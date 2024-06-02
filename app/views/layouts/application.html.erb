@@ -12,9 +12,11 @@
 
   <body>
     <div style="margin: 5px 10%">
-      <%= render  'shared/nav' %>
-      <div id='mainContainer'>
-        <%= yield %>
+      <div data-controller='body'>
+        <%= render  'shared/nav' %>
+        <div data-body-target='mainContainer'>
+          <%= yield %>
+        </div>
       </div>
     </div>
   </body>
