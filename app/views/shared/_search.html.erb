@@ -1,0 +1,31 @@
+<%= form_with url: '#' do |f| %>
+  <%= f.label :search, "🔍", style: 'font-size: 16px' %>
+  <%= f.text_field :search, id: 'searchBar' %>
+<% end %>
+
+<script>
+  document.querySelector('#searchBar').addEventListener('input', ()=>{
+    let valor = document.querySelector('#searchBar').value
+    const url = `http://127.0.0.1:3000/search?search=${valor}`;
+
+    fetch(url).then(response =>{
+      return response.json();
+    })
+    .then(data =>{
+      let mainContainer = document.querySelector('#mainContainer')
+      mainContainer.innerHTML = ''
+
+      data.forEach(element => {
+        let link = document.createElement('a');
+        let lineBreak = document.createElement('br');
+        link.setAttribute('href', `http://127.0.0.1:3000/articles/${element.id}`);
+        link.innerHTML = element.title
+
+        mainContainer.appendChild(link);
+        mainContainer.appendChild(lineBreak);
+      });
+    });
+
+  });
+
+</script>
