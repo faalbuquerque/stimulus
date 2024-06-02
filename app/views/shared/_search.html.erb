@@ -1,6 +1,9 @@
 <%= form_with url: '#' do |f| %>
   <%= f.label :search, "🔍", style: 'font-size: 16px' %>
-  <%= f.text_field :search, id: 'searchBar' %>
+  <div data-controller='search'>
+    <%= f.text_field :search, id: 'searchBar', data: { action: 'input->search#searchTerm' } %>
+    <span data-search-target='searchTermSpan'>...</span>
+  </div>
 <% end %>
 
 <script>
